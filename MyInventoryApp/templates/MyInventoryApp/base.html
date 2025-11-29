@@ -1,0 +1,70 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>The List</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static '/bootstrap/css/custom.css' %}">
+
+        <script src="{% static '/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-custom mb-3 sticky-top" style="background-color: #154c94;">
+            <div class="container-fluid">
+                <div class="col-8">
+                    <a class="navbar-brand mb-0" href="{% url 'login_user' %}">Customer Relationship Management System</span> </a>
+                </div>
+                <div class="col-4 text-end">
+                    {% block buttons %}
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+
+        <div class="container ">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <div class="alert alert-danger alert-dismissible fade show" id='msg' role="alert">
+                                <strong>{{ message }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endif %}
+                            {% if message.tags == 'success' %}
+                            <div class="alert alert-success alert-dismissible fade show" id='msg' role="alert">
+                                <strong>{{ message }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>  
+
+        <!-- Script for disappearing alerts -->
+        <script>
+            setTimeout(function(){
+                if ($('#msg').length > 0) {
+                    $('#msg').remove();
+                }
+            }, 5000)
+        </script>
+    </body>
+
+   <footer class="sticky-footer" style="background-color: #154c94; position:sticky; top:100%">
+    <div class="col pt-2 pb-2 text-center">
+        <label style="color: white"> &copy; 2020 </label>
+    </div>
+    </footer>
+      
+</html>

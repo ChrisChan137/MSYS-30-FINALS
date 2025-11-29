@@ -1,0 +1,35 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+                {% block content %}
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Login to start cooking.
+                        </div>
+                        <div class="card-body">
+                            <form method="POST"  action="{% url 'login_user' %}">{% csrf_token %}
+                                <div class="mb-3">
+                                  <label for="uname" class="form-label">User Name</label>
+                                  <input type="text" class="form-control" id="uname" name="uname" required>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="pword" class="form-label">Password</label>
+                                  <input type="password" class="form-control" id="pword" name="pword" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{% url 'signup_user' %}"><button type="button" class="btn btn-secondary">Sign Up</button></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {% endblock %}

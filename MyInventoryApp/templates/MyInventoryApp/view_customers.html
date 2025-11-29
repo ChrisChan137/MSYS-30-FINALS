@@ -1,0 +1,49 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+{% block buttons %}
+    <a href="{% url 'login_user' %}" class="btn btn-secondary">Back to Login</a>
+    <a href="{% url 'manage_account' account.id %}" class="btn btn-secondary btn-sm">Manage Account</a>
+{% endblock %}
+
+{% block content %}
+<div class="col-12">
+    <a href="{% url 'add_customers' %}" class="btn btn-primary mb-3">
+        Add Customer
+    </a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="table-dark" scope="col">Customer ID</th>
+                <th class="table-dark" scope="col">Name</th>
+                <th class="table-dark" scope="col">Phone No</th>   
+                <th class="table-dark" scope="col">Address</th>
+                <th class="table-dark" scope="col">Customer Type</th>
+                <th class="table-dark" scope="col">Customer Satisfaction</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.customer_id }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.phone_no }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>{{ customer.customer_type }}</td>
+                    <td>{{ customer.satisfaction }}</td>
+                    <td>
+                        <a href="{% url 'customer_detail' customer.id %}" class="btn btn-secondary btn-sm">
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="9">No customers found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

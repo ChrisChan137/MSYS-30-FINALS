@@ -1,0 +1,59 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+{% block buttons %}
+    <a href="{% url 'view_customers' %}" class="btn btn-secondary">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="col-12 col-md-6 mx-auto">
+    <h3 class="mb-4">Add Customer</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Customer ID -->
+        <div class="mb-3">
+            <label for="customer_id" class="form-label">Customer ID</label>
+            <input type="number" class="form-control" id="customer_id" name="customer_id" required>
+        </div>
+
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-3">
+            <label for="phone_no" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_no" name="phone_no">
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="2"></textarea>
+        </div>
+
+        <!-- Customer Type -->
+        <div class="mb-3">
+            <label for="customer_type" class="form-label">Customer Type</label>
+            <select class="form-select" id="customer_type" name="customer_type">
+                <option value="">-- Select type --</option>
+                <option value="New">New</option>
+                <option value="Regular">Regular</option>
+                <option value="VIP">VIP</option>
+            </select>
+        </div>
+
+        <!-- Satisfaction -->
+        <div class="mb-3">
+            <label for="satisfaction" class="form-label">Customer Satisfaction (1–5)</label>
+            <input type="number" class="form-control" id="satisfaction" name="satisfaction" min="1" max="5" value="3">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Customer</button>
+    </form>
+</div>
+{% endblock %}
