@@ -26,7 +26,7 @@ def login_user(request):
             return redirect('login_user')
 
     else:
-        return render(request, 'MyInventoryApp/login_user.html')
+        return render(request, 'MyCRMApp/login_user.html')
 
 
 def signup_user(request):
@@ -42,7 +42,7 @@ def signup_user(request):
         messages.success(request, 'Account created successfully.')
         return redirect('login_user')
     else:
-        return render(request, 'MyInventoryApp/signup_user.html')
+        return render(request, 'MyCRMApp/signup_user.html')
 
 def delete_account(request, pk):
     account = get_object_or_404(Account, pk=pk)
@@ -51,7 +51,7 @@ def delete_account(request, pk):
 
 def manage_account(request, pk):
     account = get_object_or_404(Account, pk=pk)
-    return render(request, 'MyInventoryApp/manage_account.html', {'account': account})
+    return render(request, 'MyCRMApp/manage_account.html', {'account': account})
 
 
 def change_password(request, pk):
@@ -75,7 +75,7 @@ def change_password(request, pk):
 
     else:
         account = get_object_or_404(Account, pk=pk)
-        return render(request, 'MyInventoryApp/change_password.html', {'account': account})
+        return render(request, 'MyCRMApp/change_password.html', {'account': account})
 
 
 # customer stuff
@@ -86,7 +86,7 @@ def view_customers(request):
     username = request.session.get('username')   # we will store this in login
     account = Account.objects.filter(user_name=username).first()
 
-    return render(request, 'MyInventoryApp/view_customers.html', {
+    return render(request, 'MyCRMApp/view_customers.html', {
         'customers': customers,
         'account': account,
     })
@@ -94,7 +94,7 @@ def view_customers(request):
 
 def customer_detail(request, pk):
     customer = get_object_or_404(Customer, pk=pk)
-    return render(request, 'MyInventoryApp/view_detail.html', {
+    return render(request, 'MyCRMApp/view_detail.html', {
         'customer': customer
     })
 
@@ -120,7 +120,7 @@ def add_customers(request):
         return redirect('view_customers')   # ← inside the IF block
 
     # ← this line is OUTSIDE the IF (same indent as `if request.method`)
-    return render(request, 'MyInventoryApp/add_customer.html')
+    return render(request, 'MyCRMApp/add_customer.html')
 
 def delete_customers(request, pk):
     Customer.objects.filter(pk=pk).delete()

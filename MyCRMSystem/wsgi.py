@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MyInventorySystem.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MyCRMSystem.settings')
 
 application = get_wsgi_application()

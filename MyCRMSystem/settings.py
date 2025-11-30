@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'MyInventoryApp'
+    'MyCRMApp'
 ]
 
 MIDDLEWARE = [
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'MyInventorySystem.urls'
+ROOT_URLCONF = 'MyCRMSystem.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'MyInventorySystem.wsgi.application'
+WSGI_APPLICATION = 'MyCRMSystem.wsgi.application'
 
 
 # Database

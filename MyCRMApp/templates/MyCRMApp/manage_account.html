@@ -1,0 +1,29 @@
+{% extends 'MyInventoryApp/base.html' %}
+
+{% block buttons %}
+    <a href="{% url 'view_customers' %}" class="btn btn-secondary">Back to Customers</a>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-5">
+    <div class="text-center">
+
+        <h3>Welcome, {{ account.user_name }}!</h3>
+
+        <div class="mt-3">
+            <a href="{% url 'change_password' account.id %}" class="btn btn-secondary mx-1">
+                Change Password
+            </a>
+
+            <a href="{% url 'delete_account' account.id %}" class="btn btn-secondary mx-1">
+                Delete Account
+            </a>
+
+            <a href="{% url 'login_user' %}" class="btn btn-secondary mx-1">
+                Sign out
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
