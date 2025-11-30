@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Account, Customer
+from collections import deque
 
+CRM = {}
+Customer_queue = deque()
 
 def login_user(request):
     if request.method == "POST":
@@ -123,7 +126,28 @@ def delete_customers(request, pk):
     Customer.objects.filter(pk=pk).delete()
     return redirect('view_customers')
 
+def get_customers_sorted_by_name(): # Linear Sorting Algo
+  return sorted(CRM.values(), key=lambda c: c.name.lower())
 
+def enqueue_customer(Customer):
+    if Customer.type == 1:
+        Customer_queue.appendleft(Customer)
+    elif Customer.type == 2:
+      if Customer_queue and Customer_queue[0].rarity == 1:
+          Customer_queue.appendleft(Customer)
+      else:
+          Customer_queue.appendleft(Customer)
+    elif Customer.type == 3:
+        Customer_queue.append(Customer)
+    else:
+        print("invalid rarity")
+
+def dequeue_customer():
+      if Customer_queue:
+        return Customer_queue.popleft()
+      else:
+        print("Queue empty")
+        return None
 
 
 
